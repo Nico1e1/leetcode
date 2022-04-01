@@ -5,3 +5,7 @@ type TreeNode struct {
 	Left  *TreeNode
 	Right *TreeNode
 }
+
+func (node *TreeNode) set() {
+	
+}
