@@ -113,7 +113,7 @@ func maxTrailingZeros(grid [][]int) int {
 		zero := 0
 		str := strconv.Itoa(num)
 		for i := len(str) - 1; i >= 0; i-- {
-			if str[i] != 0 {
+			if str[i] != '0' {
 				break
 			}
 			zero++
@@ -123,13 +123,13 @@ func maxTrailingZeros(grid [][]int) int {
 	var dfs func(i, j int, mul int, horizontal bool)
 	dfs = func(i, j, mul int, horizontal bool) {
 		if i < 0 || i >= m || j < 0 || j >= n || visited[i][j] {
+			zero := count(mul)
+			if zero > res {
+				res = zero
+			}
 			return
 		}
 		mul *= grid[i][j]
-		zero := count(mul)
-		if zero > res {
-			res = zero
-		}
 		visited[i][j] = true
 		if horizontal {
 			dfs(i, j+1, mul, true)
